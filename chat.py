@@ -38,8 +38,6 @@ def get_response(msg):
 
     tag = tags[predicted.item()]
 
-    # 0 = question, 1 = happy, 2 = angry, 3 = confused/eyebrow, 4 = alert, 5 = sad
-
     probs = torch.softmax(output, dim=1)
     prob = probs[0][predicted.item()]
     if prob.item() > 0.75:
