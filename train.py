@@ -63,7 +63,6 @@ output_size = len(tags)
 print(input_size, output_size)
 
 class ChatDataset(Dataset):
-
     def __init__(self):
         self.n_samples = len(X_train)
         self.x_data = X_train
