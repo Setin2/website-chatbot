@@ -1,8 +1,8 @@
 # Website
 
-This is a prototype website under developement. The website is made and works with flask to incorporate machine learning into it. Only looks good in landscape, so next time, I will take responsiveness into consideration.
+This is a prototype website made to work using flask. Main focus was the implementation of the chatbot interface.
 
-The torch framework takes up too much space to publish for free, so the published version chatbot does not use machine learning. To try the flask version, simplty clone the repository and call
+The torch framework takes up too much space to publish for free anywhere, so the published version chatbot does not use machine learning. To try the flask version, simplty clone the repository and call
 
 ```
 app.py
