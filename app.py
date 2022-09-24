@@ -3,7 +3,7 @@ from flask_cors import CORS
 from chat import get_response
 from flask_bootstrap import Bootstrap
 from flask_ngrok import run_with_ngrok
-#import sys
+import sys
 
 app = Flask(__name__)
 CORS(app)
