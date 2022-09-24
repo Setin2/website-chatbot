@@ -285,11 +285,11 @@ fetch('http://127.0.0.1:5000/predict', {
 		chatbox = new Chatbox(false);
 		chatbox.display();
 	}
-
 }).catch((error) => {
-	console.error('Error:', error);
-	this.updateChatText(chatbox);
-	textField.value = '';
+	// if above IP doesnt work, we are on github pages
+	// ugly but I cant be bothered to change
+	chatbox = new Chatbox(false);
+	chatbox.display();
   });
 
 
