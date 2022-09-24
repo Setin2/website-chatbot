@@ -22,7 +22,7 @@ def predict():
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == 'true':
         use_model = True
-    app.run(host='0.0.0.0')
+    app.run(host = '0.0.0.0', port = 5000)
 
 @app.route("/")
 def home():
