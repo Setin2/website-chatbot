@@ -1,5 +1,5 @@
 class Chatbox {
-    constructor() {
+    constructor(use_model) {
         this.args = {
             chatBox: document.querySelector('.chatbox__support'),
             sendButton: document.getElementById('btn-0'),
@@ -12,6 +12,7 @@ class Chatbox {
 		this.hasPartied = false;
 		this.hasNothing = false;
 		this.hasSung = false;
+		this.use_model = use_model;
 		
 		this.trigger = [ 
 			// greetings
@@ -111,7 +112,9 @@ class Chatbox {
 		let punctuationless = text1.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
 		let finalString = punctuationless.replace(/\s{2,}/g," ");
 
-		this.getResponseWithoutMachineLearning(chatbox, textField, finalString);
+		if (this.use_model)
+			this.getResponseWithMachineLearning(chatbox, textField, text1);
+		else this.getResponseWithoutMachineLearning(chatbox, textField, finalString);
     }
 	
 	howMayIHelp(chatbox){
@@ -264,9 +267,31 @@ class Chatbox {
     }
 }
 
+var chatbox = null;
+fetch('http://127.0.0.1:5000/predict', {
+	method: 'POST',
+	body: JSON.stringify({ message: "USE_MODEL" }),
+	mode: 'cors',
+	headers: {
+	  'Content-Type': 'application/json'
+	},
+  })
+  .then(r => r.json())
+  .then(r => {
+	if (r == "USE_MODEL"){
+		chatbox = new Chatbox(true);
+		chatbox.display();
+	} else {
+		chatbox = new Chatbox(false);
+		chatbox.display();
+	}
 
-const chatbox = new Chatbox();
-chatbox.display();
+}).catch((error) => {
+	console.error('Error:', error);
+	this.updateChatText(chatbox);
+	textField.value = '';
+  });
+
 
 // A list of all possible colors
 const COLORS = ["red", "blue", "green", "yellow", "pink", "purple"];
