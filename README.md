@@ -8,4 +8,10 @@ The torch framework takes up too much space to publish for free anywhere, so the
 python3 app.py true
 ```
 
-Then open the index.html file in a browser of your choice
+Then open the index.html file in a browser of your choice.
+NB, the code uses the nltk.tokenize.punkt module, which you should donwload manually if you want to run the actual chatbot. So simply open a python terminal and download the module before calling app.py.
+
+```
+python3
+nltk.download('punkt')
+```
