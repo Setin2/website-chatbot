@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Stefan Cernat</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Personal Website">
+	<meta name="author" content="Remus Stefan Cernat">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/augmented-ui.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/augment.css') }}">
+</head>
+<body>
+	<div id="container" class="container">
+		<section id="start">
+		
+			<div id="wrapper">
+				<div id="my_name" class="my_name">
+					<div class="box"> STEFAN </div>
+					<p class="subname"> /*** Personal website ***/</p>
+				</div>
+			
+				<div id="my_media" class="my_media">
+					<input type="image" onclick="location.href='https://www.facebook.com/cernat.remusstefan/'" src="{{url_for('static', filename='images/facebook.png')}}" alt="github"></input>
+					<input type="image" onclick="location.href='https://github.com/Setin2'" src="{{url_for('static', filename='images/github.png')}}" alt="github"></input>
+					<img src="{{url_for('static', filename='images/line.png')}}" alt="line"></img>
+				</div>
+
+
+
+				<section id="solar-system">
+				
+					<div id="scroll-down">
+						<span class="arrow-down"></span>
+						<span id="scroll-title"> Descend </span>
+					</div>
+				
+					<div class="typewriter">
+						<h3> &lt;a href="Mission control to operator;</h3>
+						<h4> my space odyssey has suffered from </h4>
+						<h5> turbulences. Limited outside contact.</h5>
+						<h6> Requesting intervention."&gt;</h6>
+					</div>
+				
+					<div id="sun"></div>
+					<article id="mercury-trajectory">
+						<div id="mercury"></div>
+					</article>
+					<article id="venus-trajectory">
+						<div id="venus"></div>
+					</article>
+					<article id="earth-trajectory">
+						<div id="earth"></div>
+					</article>
+					<article id="mars-trajectory">
+						<div id="mars"></div>
+					</article>
+				</section>
+				
+			</div>
+
+		</section>
+		<section id="chatbot">
+
+		<div id="wrap-about">
+		
+		<!-- add var here-->
+			<div id="shot">
+				<div class="card">
+					<div id="component">
+				</div>
+				
+				<div class="chatbot">
+					<div class="chatbox__support">
+						<div class="chatbox__messages">
+							<div></div>
+						</div>
+					
+					<div class="chatbox__footer">
+						<input type="text" placeholder="Send hyper message...">
+					</div>
+				</div>
+			
+			</div>
+				</div>
+				<div class="title"></div>
+				<div class="options">
+				<p>: : COMMAND : :</p>
+					<div class="btns">
+					<button id="btn-0">SEND</button>
+					<button id="btn-1">PARTY</button>
+					<button id="btn-2">SING</button>
+					<button id="btn-3">???</button>
+					<button id="btn-4">MISSION</button>
+					</div>
+				</div>
+				<div class="text">&#60;br&#62; <br>
+				Mission control to operator, due to high cosmic radiation&nbsp;&nbsp;&nbsp;&nbsp;<br>
+				some functionalities may be broken. Proceed at own risk.&nbsp;&nbsp;&nbsp;&nbsp;<br>
+				&#60;&#47;br&#62;</div>
+			</div>
+		
+			<div class="portrait">
+
+				<svg class="Playground__svg" viewBox="0 0 400 150">
+					<defs>
+						<filter id="filter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
+							<feMorphology operator="dilate" radius="10 0" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" result="morphology1"></feMorphology>
+						</filter>
+						<filter id="filter-2" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
+							<feMorphology operator="dilate" radius="10 2" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" result="morphology1"></feMorphology>
+						</filter>
+						<filter id="filter-3" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
+							<feMorphology operator="dilate" radius="15 0" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" result="morphology1"></feMorphology>
+						</filter>
+					</defs>
+					<!--<image preserveAspectRatio="xMidYMid slice" xlink:href="images/portrait.jpg" id="my-image"></image>-->
+					<image preserveAspectRatio="xMidYMid slice" xlink:href="{{url_for('static', filename='images/portrait.jpg')}}" id="my-image"></image>
+				</svg>
+
+				<span class="caption">Dear visitor, </span>
+				<span class="text"> I have given you access to the remote interface connected to parts of my ship.
+					From here, you can access the hyper-communication remote-channel and 
+					communicate with my chatbot assistant. Alternatively, you can go to the cargo bay on the next 
+					page and read about my skill set and projects.
+					You can thank me later for letting you gaze upon the marvels of my faculty.
+					While I am busy exploring the cosmos, feel free to remotely explore my spaceship and assist
+					my the chatbot in the missions it provides you. Yours truly, <br>
+				</span>
+				<span class="signed"> Captain Stefan R. C. </span>
+			</div>
+			</div>
+			
+		
+ 
+		</section>
+
+		<section id="projects">
+		
+		<section class="section-1" data-augmented-ui="tl-2-clip-x tr-2-clip-x border" data-highlight-info="">
+			<div class="code-area" onmouseenter="compressGroup3d()" onmouseleave="expandGroup3d()" data-augmented-ui-reset="">
+				<div class="code-container" data-augmented-ui="tl-clip tr-clip-y br-2-clip-xy both">
+					<span class="code-type-label" data-augmented-ui="">Project: VIDEO GAME</span>
+						<code>
+							.<span class="info-settings">fruit factory</span> {<br>
+							&nbsp;&nbsp;<span class="info-clip">projects-info: 25px;</span><br>
+							&nbsp;&nbsp;<span class="info-clip">project-info: 57px;</span><br>
+							&nbsp;&nbsp;<span class="info-props">background: 25px;</span><br>
+							&nbsp;&nbsp;<span class="info-props">and-motivation: 57px;</span><br>
+							&nbsp;&nbsp;<span class="info-border">game-link: </span><a href="https://play.google.com/store/apps/details?id=com.setin.com.unity.template.mobile2D">app store link</a><br>
+							&nbsp;&nbsp;<span class="info-border">google-app-store: </span><a href="https://play.google.com/store/apps/details?id=com.setin.com.unity.template.mobile2D">app store link</a><br>
+							&nbsp;&nbsp;<span class="info-inlay">what-I-learned: C#;</span><br>
+							&nbsp;&nbsp;<span class="info-inlay">review: unity;</span><br>
+							&nbsp;&nbsp;<span class="info-background">experience: +200%;</span><br>
+							&nbsp;&nbsp;<span class="info-html">end note: #trygame;</span><br>
+							&nbsp;&nbsp;<span class="info-html">leave-review...</span><br>
+							}
+						</code>
+					<span class="code-type-label" data-augmented-ui="">HTML</span>
+					<code>
+						&lt;<span>div</span> class="<span>some-information</span>"<br>
+						&nbsp;&nbsp;<span>info</span>="<span>feel-free</span>
+						<span>to-click</span> <span>on-text-above"</span>
+						&gt;<br>
+						&lt;<span>/div</span>&gt;
+					</code>
+				</div>
+			</div>
+			<div class="demo-3d" data-augmented-ui-reset="">
+				<h1> CARGO BAY </h1>
+				<div class="highlighted-info" data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
+					<div class="show-settings">
+						Name of the game I developed.
+					</div>
+					<div class="show-augs">
+						Add this attribute to elements you want to augment. If you equip augs with CSS using augmented-ui's core, no value is needed!
+					</div>
+					<div class="show-props">
+						Since I love videogames so much, I decided make my own game. In spite of its simplicity, boy was it hard.....
+					</div>
+					<div class="show-clip">
+						I wanted to showcase some of the projects I have worked on, but due to UI limitations, I can not show too much. So feel free to check my gitub or CV for more information.
+					</div>
+					<div class="show-augmented">
+						This turns on both the border and inlay
+					</div>
+					<div class="show-border">
+						The game is an incremental game called Fruit Factory, and can be found on the google app store (or you can simply click on the link).
+					</div>
+					<div class="show-html">
+						Plese feel free to try the game for yourself and leave a positive review :).
+					</div>
+					<div class="show-inlay">
+						While the game is not very positively recieved, I can say that I learned a lot from this ordeal.
+					</div>
+					<div class="show-background">
+						Not only did I gain experience in programming and game developement, but I also learned a lot about the industry and what it is like behind the scenes.
+					</div>
+				</div>
+				<script>
+					const compressGroup3d = () => {
+					const el = document.getElementById("group3d")
+					el && el.classList.add("compressed")
+					}
+					const expandGroup3d = () => {
+					const el = document.getElementById("group3d")
+					el && el.classList.remove("compressed")
+					const el2 = document.querySelector(".section-1")
+					el2 && el2.setAttribute("data-highlight-info", "")
+					}
+					const mouseenterInfo = (ev) => {
+					const cn = ev.target.className
+					if (cn.indexOf("info-") === 0) {
+					document.querySelector(".section-1").setAttribute("data-highlight-info", cn)
+					}
+					}
+					document.querySelector(".section-1 .code-area").addEventListener("mouseenter", mouseenterInfo, true)
+				</script>
+				<div id="group3d" class="group-3d" onmouseenter="expandGroup3d()" data-augmented-ui-reset="">
+					<div class="info-border my-augfiguration" data-augmented-ui="tr-clip bl-clip br-clip-y border"></div>
+					<div class="info-html my-augfiguration" data-augmented-ui="tr-clip bl-clip br-clip-y">&lt; / &gt;</div>
+					<div class="info-inlay my-augfiguration" data-augmented-ui="tr-clip bl-clip br-clip-y both"></div>
+					<div class="info-background my-augfiguration" data-augmented-ui="tr-clip bl-clip br-clip-y"></div>
+					<div class="expanded-labels">
+						::deployment
+						<div class="label-line" data-augmented-ui="bl-clip-x" style="background: #d8aea4;"></div>
+						::code
+						<div class="label-line" data-augmented-ui="bl-clip-x" style="background: var(--hot-blue);"></div>
+						::art
+						<div class="label-line" data-augmented-ui="bl-clip-x" style="background: #fbe806;"></div>
+						::concept
+						<div class="label-line" data-augmented-ui="bl-clip-x" style="background: var(--hot-red);"></div>
+					</div>
+				</div>
+			</div>
+			<div class="section-info" onmouseenter="expandGroup3d()">
+				<h2>Captain&nbsp;skill-summary</h2>
+				<br>
+				<h3>Programming languages:</h3>
+				<ul>
+				<li>Python</li>
+				<li>JavaScript</li>
+				<li>Java &#38; C#</li>
+				<li>HTML &#38; CSS</li>
+				</ul>
+				<h3>Frameworks, Tools &#38; Others:</h3>
+				<ul>
+				<li>PostgreSQL (databases)</li>
+				<li>Git</li>
+				<li>Googling (proficient)</li>
+				</ul>
+				<h3>Projects:</h3>
+				<ul>
+				<li> Mobile game (showcased on the left) </li>
+				<li> To see more of my projects, feel free to check my <a href = "https://github.com/Setin2"> github </a> </li>
+				</ul>
+			</div>
+		</section>
+		</section>
+		
+		<section id="contact">		
+			<div class="object">
+				<div class="object-rope"></div>
+				<div class="object-shape">
+					<span class="soon">Coming Soon</span>
+				</div>
+			</div>
+			<div class="content">
+				<p> This part of the website is under implementation. Feel free to contact me if you have any questions.</p>
+				<p> Remus Stefan Cernat </p>
+				<p><em> stefancernat88@yahoo.com </em></p>
+			</div>			
+		</section>
+	</div>
+
+	<script src="{{ url_for('static', filename='javascript/chatbot.js') }}"></script>
+	<script src="{{ url_for('static', filename='javascript/jquery-3.6.0.min.js') }}"></script>
+</body>
+
+</html>
