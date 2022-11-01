@@ -4,7 +4,7 @@ This is a prototype website made to work using flask. Main focus was the impleme
 
 To try the flask version (and the chatbot), you must have Docker installed on your machine and follow these steps once you clone the repository:
 
-1. First create a docker image of the app
+1. First create a docker image of the app (while inside the main folder)
 ```
 docker image build -t name_of_your_image .
 ```
