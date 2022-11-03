@@ -146,34 +146,29 @@ class Chatbox {
       })
       .then(r => r.json())
       .then(r => {
-          let mess = r.answer.split("$");
-          let msg2 = { name: "Sam", message: mess[0]};
-          this.messages.push(msg2);
+          let messageText = r.answer.split("$");
+          let message = { name: "Sam", message: messageText[0]};
+          this.messages.push(message);
           this.updateChatText(chatbox);
           textField.value = '';
       }).catch((error) => {
           console.error('Error:', error);
-          this.updateChatText(chatbox);
           textField.value = '';
       });
 	}
 
-    updateChatText(chatbox) {
-        let html = '';
-        this.messages.slice().reverse().forEach(function(item, index) {
-            if (item.name === "Sam")
-            {	
-                html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>';
-            }
-            else
-            {
-                html += '<div class="messages__item messages__item--operator">' + item.message + '</div>';
-            }
-          });
+  updateChatText(chatbox) {
+      let html = '';
+      this.messages.slice().reverse().forEach(function(item, index) {
+          if (item.name === "Sam")	
+              html += '<div class="messages__item messages__item--visitor">' + item.message + '</div>';
+          else
+              html += '<div class="messages__item messages__item--operator">' + item.message + '</div>';
+      });
 
-        const chatmessage = chatbox.querySelector('.chatbox__messages');
-        chatmessage.innerHTML = html;
-    }
+      const chatmessage = chatbox.querySelector('.chatbox__messages');
+      chatmessage.innerHTML = html;
+  }
 }
 
 var chatbox = new Chatbox();
@@ -215,7 +210,6 @@ function createParticle(x, y) {
 
   // Remove the particle at the end of animation
   animation.finished.then(() => element.remove());
-
   document.body.appendChild(element);
 }
 
