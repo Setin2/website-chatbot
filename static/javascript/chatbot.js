@@ -3,24 +3,22 @@ class Chatbox {
         this.args = {
             chatBox: document.querySelector('.chatbox__support'),
             sendButton: document.getElementById('btn-0'),
-			partyButton: document.getElementById('btn-1'),
-			singButton: document.getElementById('btn-2'),
-			thirdButton: document.getElementById('btn-3'),
-			fourthButton: document.getElementById('btn-4')
+            partyButton: document.getElementById('btn-1'),
+            singButton: document.getElementById('btn-2'),
+            thirdButton: document.getElementById('btn-3'),
+            fourthButton: document.getElementById('btn-4')
         };
 		
-		this.hasPartied = false;
-		this.hasNothing = false;
-		this.hasSung = false;
+        this.hasPartied = false;
+        this.hasNothing = false;
+        this.hasSung = false;
 
-		this.alternative = ["I am not authorized to reply to that", "I can not reply to this do to space dust interference", "There is a problem with the console. Your message didn't get through!", "I do not understand...", "I do not respond to grammatically incorrect messages."];
-
-		this.missions = [
-			"You need to fix the positronic ramscop so we can enter hyperspace again.",
-			"Please hand me the Dyson spheere manipulator.",
-			"The Shkadov replicant has escaped the ship. Find and eliminate it.",
-			"Your mission is to remotely repair the Lofstrom loop in the cargo bay."
-		]
+        this.missions = [
+          "You need to fix the positronic ramscop so we can enter hyperspace again.",
+          "Please hand me the Dyson spheere manipulator.",
+          "The Shkadov replicant has escaped the ship. Find and eliminate it.",
+          "Your mission is to remotely repair the Lofstrom loop in the cargo bay."
+        ];
 
         this.messages = [];
     }
@@ -28,13 +26,13 @@ class Chatbox {
     display() {
         const {chatBox, sendButton, partyButton, singButton, thirdButton, fourthButton} = this.args;
 
-		this.howMayIHelp(chatBox);
+		    this.howMayIHelp(chatBox);
 		
         sendButton.addEventListener('click', () => this.onSendButton(chatBox));
-		partyButton.addEventListener('click', () => this.party(chatBox));
-		singButton.addEventListener('click', () => this.sing(chatBox));
-		thirdButton.addEventListener('click', () => this.nothing(chatBox));
-		fourthButton.addEventListener('click', () => this.mission(chatBox));
+        partyButton.addEventListener('click', () => this.party(chatBox));
+        singButton.addEventListener('click', () => this.sing(chatBox));
+        thirdButton.addEventListener('click', () => this.nothing(chatBox));
+        fourthButton.addEventListener('click', () => this.mission(chatBox));
 
         const node = chatBox.querySelector('input');
         node.addEventListener("keyup", ({key}) => {
@@ -44,131 +42,124 @@ class Chatbox {
         });
     }
 	
+   /**
+    * @param {string} param
+    * @return {number}
+    */
     onSendButton(chatbox) {
-        var textField = chatbox.querySelector('input');
-        let text1 = textField.value;
-        if (text1.trim() === "") {
-            return;
+        let textField = chatbox.querySelector('input');
+        let text = textField.value.trim();
+
+        if (text === "") return;
+		
+        // length of message must not exceed 35 characters
+        if (text.length > 35){
+          let response = { name: "Sam", message: "Your message is too long. I am NOT reading that!" };
+          this.pushMessageToInterface(chatbox, response);
+          textField.value = '';
+          return;
+		    }
+		
+        // check for cross-site scripting
+        let xss =["<", "script", "http", "%"];
+        if (xss.some(el => text.toLowerCase().includes(el))){
+          let response = { name: "Sam", message: "Tricky tricky... ;)" };
+          this.pushMessageToInterface(chatbox, response);
+          textField.value = '';
+          return;
         }
-		
-		if (text1.length > 35){
-			let msg2 = { name: "Sam", message: "Your message is too long. I am NOT reading that!" };
-			this.messages.push(msg2);
-			this.updateChatText(chatbox);
-            textField.value = '';
-			return;
-		}
-		
-		var xss =["<", "script", "http", "%"];
-		if (xss.some(el => text1.toLowerCase().includes(el))){
-			//this.chatbot_image.src="images/chatbot_alert.png";
-			let msg2 = { name: "Sam", message: "Tricky tricky... ;)" };
-			this.messages.push(msg2);
-			this.updateChatText(chatbox);
-            textField.value = '';
-			return;
-		}
 
-        let msg1 = { name: "User", message: text1};
-        this.messages.push(msg1);
-		this.updateChatText(chatbox);
-		textField.value = '';
+        let user_message = { name: "User", message: text};
+        this.pushMessageToInterface(chatbox, user_message);
+        this.getResponse(chatbox, textField, text);
+    }
 
-		let punctuationless = text1.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
-		let finalString = punctuationless.replace(/\s{2,}/g," ");
-
-		this.getResponse(chatbox, textField, text1);
+    pushMessageToInterface(chatbox, message){
+      this.messages.push(message);
+      this.updateChatText(chatbox);
     }
 	
-	howMayIHelp(chatbox){
-		var mess = "I am an ultra intelligent AI operator trained through state-of-the-art machine learning. Feel free to ask me anything!";
-		
-		let msg2 = { name: "Sam", message: mess };
-		this.messages.push(msg2);
-		var html = '<div class="messages__item messages__item--visitor">' + mess + '</div>';
-		const chatmessage = chatbox.querySelector('.chatbox__messages');
+	  howMayIHelp(chatbox){
+        let messagText = "I am an ultra intelligent AI operator trained through state-of-the-art machine learning. Feel free to ask me anything!"
+        let message = { name: "Sam", message: messagText };
+        this.messages.push(message);
+        let html = '<div class="messages__item messages__item--visitor">' + messagText + '</div>';
+        const chatmessage = chatbox.querySelector('.chatbox__messages');
         chatmessage.innerHTML = html;
-	}
+	  }
 	
-	party(chatbox){
-		if (this.hasPartied == false){
-			this.hasPartied = true;
-			let mess = "You gotta make do... :/";
-            let msg2 = { name: "Sam", message: mess};
-            this.messages.push(msg2);
-            this.updateChatText(chatbox);
-		}
-	}
+    party(chatbox){
+        if (!this.hasPartied){
+            this.hasPartied = true;
+            let response = { name: "Sam", message: "You gotta make do... :/"};
+            this.pushMessageToInterface(chatbox, response);
+        }
+    }
 	
 	sing(chatbox){
-		if (this.hasSung == false){
-			this.hasSung = true;
-			var audio = new Audio('static/audio/Lacrimosa.mp3');
-			audio.play();
-			let mess = "Ohh no.... you can't actually stop the chatbot from singing once you start it. So good luck!";
-            let msg2 = { name: "Sam", message: mess};
-            this.messages.push(msg2);
-            this.updateChatText(chatbox);
-		}
+		  if (!this.hasSung){
+			    this.hasSung = true;
+			    let audio = new Audio('static/audio/Lacrimosa.mp3');
+			    audio.play();
+          let response = { name: "Sam", message: "Ohh no.... you can't actually stop the chatbot from singing once you start it. So good luck!"};
+          this.pushMessageToInterface(chatbox, response);
+		  }
 	}
 	
 	nothing(chatbox){
-		if (this.hasNothing == false){
-			this.hasNothing = true;
-			let mess = "This button doesn't actually do anything. But 3 buttons felt like too little.";
-            let msg2 = { name: "Sam", message: mess};
-            this.messages.push(msg2);
-            this.updateChatText(chatbox);
+		  if (!this.hasNothing){
+			    this.hasNothing = true;
+          let response = { name: "Sam", message: "This button doesn't actually do anything. But 3 buttons felt like too little."};
+          this.pushMessageToInterface(chatbox, response);
 		}
 	}
 	
 	mission(chatbox){
-		let msg1;
-		if (this.missions == null){
-			return;
-		} else if (this.missions.length == 0){
-			msg1 = "Please finish your current missions.";
-			this.missions = null;
-		} else if (this.missions.length == 1) {
-			msg1 = this.missions[0];
-			this.missions = [];
-		} else {
-			let mission_nr = Math.floor(Math.random() * this.missions.length);
-			msg1 = this.missions[mission_nr];
-			this.missions.splice(mission_nr, 1);
-		}
+	    let response_text;
+		  if (this.missions == null){
+			    return;
+		  } else if (this.missions.length == 0){
+          response_text = "Please finish your current missions.";
+			    this.missions = null;
+		  } else if (this.missions.length == 1) {
+          response_text = this.missions[0];
+			    this.missions = [];
+		  } else {
+			    let mission_nr = Math.floor(Math.random() * this.missions.length);
+			    response_text = this.missions[mission_nr];
+			    this.missions.splice(mission_nr, 1);
+		  }
 		
-		let msg2 = { name: "Sam", message: msg1 };
-		this.messages.push(msg2);
-		this.updateChatText(chatbox);
+		  let resonse = { name: "Sam", message: response_text };
+		  this.messages.push(resonse);
+		  this.updateChatText(chatbox);
 	}
 	
-	getResponse(chatbox, textField, text1){
-		fetch('http://127.0.0.1:5000/predict', {
-            method: 'POST',
-            body: JSON.stringify({ message: text1 }),
-            mode: 'cors',
-            headers: {
+	getResponse(chatbox, textField, text){
+	    fetch('http://127.0.0.1:5000/predict', {
+          method: 'POST',
+          body: JSON.stringify({ message: text }),
+          mode: 'cors',
+          headers: {
               'Content-Type': 'application/json'
-            },
-          })
-          .then(r => r.json())
-          .then(r => {
-			let mess = r.answer.split("$");
-            let msg2 = { name: "Sam", message: mess[0]};
-            this.messages.push(msg2);
-            this.updateChatText(chatbox);
-            textField.value = '';
-
-        }).catch((error) => {
-            console.error('Error:', error);
-            this.updateChatText(chatbox);
-            textField.value = '';
-          });
+          },
+      })
+      .then(r => r.json())
+      .then(r => {
+          let mess = r.answer.split("$");
+          let msg2 = { name: "Sam", message: mess[0]};
+          this.messages.push(msg2);
+          this.updateChatText(chatbox);
+          textField.value = '';
+      }).catch((error) => {
+          console.error('Error:', error);
+          this.updateChatText(chatbox);
+          textField.value = '';
+      });
 	}
 
     updateChatText(chatbox) {
-        var html = '';
+        let html = '';
         this.messages.slice().reverse().forEach(function(item, index) {
             if (item.name === "Sam")
             {	
